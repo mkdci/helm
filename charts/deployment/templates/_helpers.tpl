@@ -64,3 +64,33 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Allow the release namespace to be overridden for multi-namespace deployments in combined charts
+*/}}
+{{- define "deployment.namespace" -}}
+  {{- if .Values.namespaceOverride -}}
+    {{- .Values.namespaceOverride -}}
+  {{- else -}}
+    {{- .Release.Namespace -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Sets default scrape limits for servicemonitor */}}
+{{- define "servicemonitor.scrapeLimits" -}}
+{{- with .sampleLimit }}
+sampleLimit: {{ . }}
+{{- end }}
+{{- with .targetLimit }}
+targetLimit: {{ . }}
+{{- end }}
+{{- with .labelLimit }}
+labelLimit: {{ . }}
+{{- end }}
+{{- with .labelNameLengthLimit }}
+labelNameLengthLimit: {{ . }}
+{{- end }}
+{{- with .labelValueLengthLimit }}
+labelValueLengthLimit: {{ . }}
+{{- end }}
+{{- end -}}

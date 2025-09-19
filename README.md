@@ -2,6 +2,8 @@
 
 ## Get started
 
+https://github.com/mkdci/helm
+
 Add this repository to Helm.
 
 ```

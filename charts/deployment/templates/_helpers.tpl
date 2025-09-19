@@ -36,9 +36,6 @@ Common labels
 */}}
 {{- define "deployment.labels" -}}
 helm.sh/chart: {{ include "deployment.chart" . }}
-{{- if .Values.monitor.enabled }}
-monitor/type: {{ .Values.monitor.type }}
-{{- end }}
 {{ include "deployment.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

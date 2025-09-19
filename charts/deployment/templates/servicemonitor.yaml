@@ -32,7 +32,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ template "deployment.name" . }}
-      release: {{ $.Release.Name | quote }}
+      app.kubernetes.io/instance: {{ $.Release.Name | quote }}
   namespaceSelector:
     matchNames:
       - {{ printf "%s" (include "deployment.namespace" .) | quote }}

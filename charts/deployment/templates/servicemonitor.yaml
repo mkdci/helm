@@ -34,5 +34,6 @@ spec:
       app.kubernetes.io/name: {{ template "deployment.name" . }}
       app.kubernetes.io/instance: {{ $.Release.Name | quote }}
   namespaceSelector:
-    any: true
+    matchNames:
+      - {{ printf "%s" (include "deployment.namespace" .) | quote }}
 {{- end }}
